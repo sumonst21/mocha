@@ -117,7 +117,10 @@ if (nodeArgs.gc) {
   delete nodeArgs.gc;
 }
 
-if (Object.keys(nodeArgs).length) {
+if (
+  Object.keys(nodeArgs).length ||
+  (mochaArgs.require && mochaArgs.require.includes('esm'))
+) {
   const {spawn} = require('child_process');
   const mochaPath = require.resolve('../lib/cli/cli.js');
 
